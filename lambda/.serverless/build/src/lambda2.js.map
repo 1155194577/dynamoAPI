@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lambda2.ts"],
+  "sourcesContent": ["// ./src/lambda2.ts\nimport type { Handler, Context, ScheduledEvent } from \"aws-lambda\";\n\nexport const handler: Handler = async (\n  _event: ScheduledEvent,\n  _context: Context\n) => {\n  console.log(\"Hello, Lambda 2!\");\n\n  return {\n    statusCode: 200,\n  };\n};"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAGO,IAAM,UAAmB,OAC9B,QACA,aACG;AACH,UAAQ,IAAI,kBAAkB;AAE9B,SAAO;AAAA,IACL,YAAY;AAAA,EACd;AACF;",
+  "names": []
+}

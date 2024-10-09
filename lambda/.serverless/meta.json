@@ -1,0 +1,1442 @@
+{
+  "/workspaces/dynamoAPI/lambda": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.4",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "opt": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "service": "serverless-typescript-template",
+            "plugins": [
+              "serverless-offline"
+            ],
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs18.x",
+              "region": "eu-west-1",
+              "stage": "dev",
+              "timeout": 30,
+              "environment": {
+                "STAGE": "dev"
+              },
+              "versionFunctions": true,
+              "compiledCloudFormationTemplate": {
+                "AWSTemplateFormatVersion": "2010-09-09",
+                "Description": "The AWS CloudFormation template for this Serverless application",
+                "Resources": {
+                  "Function1LogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/serverless-typescript-template-dev-Function1"
+                    }
+                  },
+                  "Function2LogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/serverless-typescript-template-dev-Function2"
+                    }
+                  },
+                  "IamRoleLambdaExecution": {
+                    "Type": "AWS::IAM::Role",
+                    "Properties": {
+                      "AssumeRolePolicyDocument": {
+                        "Version": "2012-10-17",
+                        "Statement": [
+                          {
+                            "Effect": "Allow",
+                            "Principal": {
+                              "Service": [
+                                "lambda.amazonaws.com"
+                              ]
+                            },
+                            "Action": [
+                              "sts:AssumeRole"
+                            ]
+                          }
+                        ]
+                      },
+                      "Policies": [
+                        {
+                          "PolicyName": {
+                            "Fn::Join": [
+                              "-",
+                              [
+                                "serverless-typescript-template",
+                                "dev",
+                                "lambda"
+                              ]
+                            ]
+                          },
+                          "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                              {
+                                "Effect": "Allow",
+                                "Action": [
+                                  "logs:CreateLogStream",
+                                  "logs:CreateLogGroup",
+                                  "logs:TagResource"
+                                ],
+                                "Resource": [
+                                  {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-typescript-template-dev*:*"
+                                  }
+                                ]
+                              },
+                              {
+                                "Effect": "Allow",
+                                "Action": [
+                                  "logs:PutLogEvents"
+                                ],
+                                "Resource": [
+                                  {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-typescript-template-dev*:*:*"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "Path": "/",
+                      "RoleName": {
+                        "Fn::Join": [
+                          "-",
+                          [
+                            "serverless-typescript-template",
+                            "dev",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            "lambdaRole"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "Function1LambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                      },
+                      "Handler": "./src/lambda1.handler",
+                      "Runtime": "nodejs18.x",
+                      "FunctionName": "serverless-typescript-template-dev-Function1",
+                      "MemorySize": 1024,
+                      "Timeout": 30,
+                      "Environment": {
+                        "Variables": {
+                          "STAGE": "dev",
+                          "CUSTOM_VAR": "Hello, World!",
+                          "NODE_OPTIONS": "--enable-source-maps"
+                        }
+                      },
+                      "Role": {
+                        "Fn::GetAtt": [
+                          "IamRoleLambdaExecution",
+                          "Arn"
+                        ]
+                      }
+                    },
+                    "DependsOn": [
+                      "Function1LogGroup"
+                    ]
+                  },
+                  "Function2LambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                      },
+                      "Handler": "./src/lambda2.handler",
+                      "Runtime": "nodejs18.x",
+                      "FunctionName": "serverless-typescript-template-dev-Function2",
+                      "MemorySize": 2048,
+                      "Timeout": 10,
+                      "Environment": {
+                        "Variables": {
+                          "STAGE": "dev",
+                          "NODE_OPTIONS": "--enable-source-maps"
+                        }
+                      },
+                      "Role": {
+                        "Fn::GetAtt": [
+                          "IamRoleLambdaExecution",
+                          "Arn"
+                        ]
+                      }
+                    },
+                    "DependsOn": [
+                      "Function2LogGroup"
+                    ]
+                  },
+                  "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "Function1LambdaFunction"
+                      },
+                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                    }
+                  },
+                  "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "Function2LambdaFunction"
+                      },
+                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                    }
+                  },
+                  "Function2EventsRuleSchedule1": {
+                    "Type": "AWS::Events::Rule",
+                    "Properties": {
+                      "ScheduleExpression": "cron(0 12 * * ? *)",
+                      "State": "ENABLED",
+                      "Targets": [
+                        {
+                          "Arn": {
+                            "Fn::GetAtt": [
+                              "Function2LambdaFunction",
+                              "Arn"
+                            ]
+                          },
+                          "Id": "Function2Schedule"
+                        }
+                      ]
+                    }
+                  },
+                  "Function2LambdaPermissionEventsRuleSchedule1": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "Function2LambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "events.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::GetAtt": [
+                          "Function2EventsRuleSchedule1",
+                          "Arn"
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApi": {
+                    "Type": "AWS::ApiGatewayV2::Api",
+                    "Properties": {
+                      "Name": "dev-serverless-typescript-template",
+                      "ProtocolType": "HTTP"
+                    }
+                  },
+                  "HttpApiStage": {
+                    "Type": "AWS::ApiGatewayV2::Stage",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "StageName": "$default",
+                      "AutoDeploy": true,
+                      "DefaultRouteSettings": {
+                        "DetailedMetricsEnabled": false
+                      }
+                    }
+                  },
+                  "Function1LambdaPermissionHttpApi": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "Function1LambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "apigateway.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "HttpApi"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApiIntegrationFunction1": {
+                    "Type": "AWS::ApiGatewayV2::Integration",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "IntegrationType": "AWS_PROXY",
+                      "IntegrationUri": {
+                        "Fn::GetAtt": [
+                          "Function1LambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "PayloadFormatVersion": "2.0",
+                      "TimeoutInMillis": 30000
+                    }
+                  },
+                  "HttpApiRouteGetApiFunction1": {
+                    "Type": "AWS::ApiGatewayV2::Route",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "RouteKey": "GET /api/Function1",
+                      "Target": {
+                        "Fn::Join": [
+                          "/",
+                          [
+                            "integrations",
+                            {
+                              "Ref": "HttpApiIntegrationFunction1"
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "DependsOn": "HttpApiIntegrationFunction1"
+                  }
+                },
+                "Outputs": {
+                  "ServerlessDeploymentBucketName": {
+                    "Value": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
+                    }
+                  },
+                  "Function1LambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "Function2LambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "HttpApiId": {
+                    "Description": "Id of the HTTP API",
+                    "Value": {
+                      "Ref": "HttpApi"
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-HttpApiId"
+                    }
+                  },
+                  "HttpApiUrl": {
+                    "Description": "URL of the HTTP API",
+                    "Value": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://",
+                          {
+                            "Ref": "HttpApi"
+                          },
+                          ".execute-api.",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ".",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          }
+                        ]
+                      ]
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-HttpApiUrl"
+                    }
+                  }
+                }
+              },
+              "vpc": {}
+            },
+            "custom": {
+              "customVariable1": "Hello, World!"
+            },
+            "functions": {
+              "Function1": {
+                "handler": "./src/lambda1.handler",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/api/Function1",
+                      "method": "GET"
+                    },
+                    "resolvedMethod": "GET",
+                    "resolvedPath": "/api/Function1"
+                  }
+                ],
+                "environment": {
+                  "CUSTOM_VAR": "Hello, World!",
+                  "NODE_OPTIONS": "--enable-source-maps"
+                },
+                "name": "serverless-typescript-template-dev-Function1",
+                "package": {},
+                "memory": 1024,
+                "timeout": 30,
+                "runtime": "nodejs18.x",
+                "vpc": {},
+                "versionLogicalId": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+              },
+              "Function2": {
+                "handler": "./src/lambda2.handler",
+                "timeout": 10,
+                "memorySize": 2048,
+                "events": [
+                  {
+                    "schedule": {
+                      "rate": [
+                        "cron(0 12 * * ? *)"
+                      ],
+                      "enabled": true
+                    }
+                  }
+                ],
+                "name": "serverless-typescript-template-dev-Function2",
+                "environment": {
+                  "NODE_OPTIONS": "--enable-source-maps"
+                },
+                "package": {},
+                "memory": 2048,
+                "runtime": "nodejs18.x",
+                "vpc": {},
+                "versionLogicalId": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+              }
+            }
+          },
+          "configFileDirPath": "/workspaces/dynamoAPI/lambda",
+          "config": {
+            "type": "opt"
+          },
+          "options": {
+            "stage": "dev"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:opt",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      },
+      "self": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "service": "serverless-typescript-template",
+            "plugins": [
+              "serverless-offline"
+            ],
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs18.x",
+              "region": "eu-west-1",
+              "stage": "dev",
+              "timeout": 30,
+              "environment": {
+                "STAGE": "dev"
+              },
+              "versionFunctions": true,
+              "compiledCloudFormationTemplate": {
+                "AWSTemplateFormatVersion": "2010-09-09",
+                "Description": "The AWS CloudFormation template for this Serverless application",
+                "Resources": {
+                  "Function1LogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/serverless-typescript-template-dev-Function1"
+                    }
+                  },
+                  "Function2LogGroup": {
+                    "Type": "AWS::Logs::LogGroup",
+                    "Properties": {
+                      "LogGroupName": "/aws/lambda/serverless-typescript-template-dev-Function2"
+                    }
+                  },
+                  "IamRoleLambdaExecution": {
+                    "Type": "AWS::IAM::Role",
+                    "Properties": {
+                      "AssumeRolePolicyDocument": {
+                        "Version": "2012-10-17",
+                        "Statement": [
+                          {
+                            "Effect": "Allow",
+                            "Principal": {
+                              "Service": [
+                                "lambda.amazonaws.com"
+                              ]
+                            },
+                            "Action": [
+                              "sts:AssumeRole"
+                            ]
+                          }
+                        ]
+                      },
+                      "Policies": [
+                        {
+                          "PolicyName": {
+                            "Fn::Join": [
+                              "-",
+                              [
+                                "serverless-typescript-template",
+                                "dev",
+                                "lambda"
+                              ]
+                            ]
+                          },
+                          "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                              {
+                                "Effect": "Allow",
+                                "Action": [
+                                  "logs:CreateLogStream",
+                                  "logs:CreateLogGroup",
+                                  "logs:TagResource"
+                                ],
+                                "Resource": [
+                                  {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-typescript-template-dev*:*"
+                                  }
+                                ]
+                              },
+                              {
+                                "Effect": "Allow",
+                                "Action": [
+                                  "logs:PutLogEvents"
+                                ],
+                                "Resource": [
+                                  {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-typescript-template-dev*:*:*"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "Path": "/",
+                      "RoleName": {
+                        "Fn::Join": [
+                          "-",
+                          [
+                            "serverless-typescript-template",
+                            "dev",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            "lambdaRole"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "Function1LambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                      },
+                      "Handler": "./src/lambda1.handler",
+                      "Runtime": "nodejs18.x",
+                      "FunctionName": "serverless-typescript-template-dev-Function1",
+                      "MemorySize": 1024,
+                      "Timeout": 30,
+                      "Environment": {
+                        "Variables": {
+                          "STAGE": "dev",
+                          "CUSTOM_VAR": "Hello, World!",
+                          "NODE_OPTIONS": "--enable-source-maps"
+                        }
+                      },
+                      "Role": {
+                        "Fn::GetAtt": [
+                          "IamRoleLambdaExecution",
+                          "Arn"
+                        ]
+                      }
+                    },
+                    "DependsOn": [
+                      "Function1LogGroup"
+                    ]
+                  },
+                  "Function2LambdaFunction": {
+                    "Type": "AWS::Lambda::Function",
+                    "Properties": {
+                      "Code": {
+                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                      },
+                      "Handler": "./src/lambda2.handler",
+                      "Runtime": "nodejs18.x",
+                      "FunctionName": "serverless-typescript-template-dev-Function2",
+                      "MemorySize": 2048,
+                      "Timeout": 10,
+                      "Environment": {
+                        "Variables": {
+                          "STAGE": "dev",
+                          "NODE_OPTIONS": "--enable-source-maps"
+                        }
+                      },
+                      "Role": {
+                        "Fn::GetAtt": [
+                          "IamRoleLambdaExecution",
+                          "Arn"
+                        ]
+                      }
+                    },
+                    "DependsOn": [
+                      "Function2LogGroup"
+                    ]
+                  },
+                  "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "Function1LambdaFunction"
+                      },
+                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                    }
+                  },
+                  "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw": {
+                    "Type": "AWS::Lambda::Version",
+                    "DeletionPolicy": "Retain",
+                    "Properties": {
+                      "FunctionName": {
+                        "Ref": "Function2LambdaFunction"
+                      },
+                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                    }
+                  },
+                  "Function2EventsRuleSchedule1": {
+                    "Type": "AWS::Events::Rule",
+                    "Properties": {
+                      "ScheduleExpression": "cron(0 12 * * ? *)",
+                      "State": "ENABLED",
+                      "Targets": [
+                        {
+                          "Arn": {
+                            "Fn::GetAtt": [
+                              "Function2LambdaFunction",
+                              "Arn"
+                            ]
+                          },
+                          "Id": "Function2Schedule"
+                        }
+                      ]
+                    }
+                  },
+                  "Function2LambdaPermissionEventsRuleSchedule1": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "Function2LambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "events.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::GetAtt": [
+                          "Function2EventsRuleSchedule1",
+                          "Arn"
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApi": {
+                    "Type": "AWS::ApiGatewayV2::Api",
+                    "Properties": {
+                      "Name": "dev-serverless-typescript-template",
+                      "ProtocolType": "HTTP"
+                    }
+                  },
+                  "HttpApiStage": {
+                    "Type": "AWS::ApiGatewayV2::Stage",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "StageName": "$default",
+                      "AutoDeploy": true,
+                      "DefaultRouteSettings": {
+                        "DetailedMetricsEnabled": false
+                      }
+                    }
+                  },
+                  "Function1LambdaPermissionHttpApi": {
+                    "Type": "AWS::Lambda::Permission",
+                    "Properties": {
+                      "FunctionName": {
+                        "Fn::GetAtt": [
+                          "Function1LambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "Action": "lambda:InvokeFunction",
+                      "Principal": "apigateway.amazonaws.com",
+                      "SourceArn": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "HttpApi"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "HttpApiIntegrationFunction1": {
+                    "Type": "AWS::ApiGatewayV2::Integration",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "IntegrationType": "AWS_PROXY",
+                      "IntegrationUri": {
+                        "Fn::GetAtt": [
+                          "Function1LambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "PayloadFormatVersion": "2.0",
+                      "TimeoutInMillis": 30000
+                    }
+                  },
+                  "HttpApiRouteGetApiFunction1": {
+                    "Type": "AWS::ApiGatewayV2::Route",
+                    "Properties": {
+                      "ApiId": {
+                        "Ref": "HttpApi"
+                      },
+                      "RouteKey": "GET /api/Function1",
+                      "Target": {
+                        "Fn::Join": [
+                          "/",
+                          [
+                            "integrations",
+                            {
+                              "Ref": "HttpApiIntegrationFunction1"
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "DependsOn": "HttpApiIntegrationFunction1"
+                  }
+                },
+                "Outputs": {
+                  "ServerlessDeploymentBucketName": {
+                    "Value": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
+                    }
+                  },
+                  "Function1LambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "Function2LambdaFunctionQualifiedArn": {
+                    "Description": "Current Lambda function version",
+                    "Value": {
+                      "Ref": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
+                    }
+                  },
+                  "HttpApiId": {
+                    "Description": "Id of the HTTP API",
+                    "Value": {
+                      "Ref": "HttpApi"
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-HttpApiId"
+                    }
+                  },
+                  "HttpApiUrl": {
+                    "Description": "URL of the HTTP API",
+                    "Value": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://",
+                          {
+                            "Ref": "HttpApi"
+                          },
+                          ".execute-api.",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ".",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          }
+                        ]
+                      ]
+                    },
+                    "Export": {
+                      "Name": "sls-serverless-typescript-template-dev-HttpApiUrl"
+                    }
+                  }
+                }
+              },
+              "vpc": {}
+            },
+            "custom": {
+              "customVariable1": "Hello, World!"
+            },
+            "functions": {
+              "Function1": {
+                "handler": "./src/lambda1.handler",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/api/Function1",
+                      "method": "GET"
+                    },
+                    "resolvedMethod": "GET",
+                    "resolvedPath": "/api/Function1"
+                  }
+                ],
+                "environment": {
+                  "CUSTOM_VAR": "Hello, World!",
+                  "NODE_OPTIONS": "--enable-source-maps"
+                },
+                "name": "serverless-typescript-template-dev-Function1",
+                "package": {},
+                "memory": 1024,
+                "timeout": 30,
+                "runtime": "nodejs18.x",
+                "vpc": {},
+                "versionLogicalId": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+              },
+              "Function2": {
+                "handler": "./src/lambda2.handler",
+                "timeout": 10,
+                "memorySize": 2048,
+                "events": [
+                  {
+                    "schedule": {
+                      "rate": [
+                        "cron(0 12 * * ? *)"
+                      ],
+                      "enabled": true
+                    }
+                  }
+                ],
+                "name": "serverless-typescript-template-dev-Function2",
+                "environment": {
+                  "NODE_OPTIONS": "--enable-source-maps"
+                },
+                "package": {},
+                "memory": 2048,
+                "runtime": "nodejs18.x",
+                "vpc": {},
+                "versionLogicalId": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+              }
+            }
+          },
+          "configFileDirPath": "/workspaces/dynamoAPI/lambda",
+          "config": {
+            "type": "self"
+          },
+          "options": {
+            "stage": "dev"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:self",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "/workspaces/dynamoAPI/lambda",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "serverless-typescript-template",
+      "plugins": [
+        "serverless-offline"
+      ],
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "eu-west-1",
+        "stage": "dev",
+        "timeout": 30,
+        "environment": {
+          "STAGE": "dev"
+        },
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {
+            "Function1LogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/serverless-typescript-template-dev-Function1"
+              }
+            },
+            "Function2LogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/serverless-typescript-template-dev-Function2"
+              }
+            },
+            "IamRoleLambdaExecution": {
+              "Type": "AWS::IAM::Role",
+              "Properties": {
+                "AssumeRolePolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Principal": {
+                        "Service": [
+                          "lambda.amazonaws.com"
+                        ]
+                      },
+                      "Action": [
+                        "sts:AssumeRole"
+                      ]
+                    }
+                  ]
+                },
+                "Policies": [
+                  {
+                    "PolicyName": {
+                      "Fn::Join": [
+                        "-",
+                        [
+                          "serverless-typescript-template",
+                          "dev",
+                          "lambda"
+                        ]
+                      ]
+                    },
+                    "PolicyDocument": {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:CreateLogStream",
+                            "logs:CreateLogGroup",
+                            "logs:TagResource"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-typescript-template-dev*:*"
+                            }
+                          ]
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:PutLogEvents"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-typescript-template-dev*:*:*"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "Path": "/",
+                "RoleName": {
+                  "Fn::Join": [
+                    "-",
+                    [
+                      "serverless-typescript-template",
+                      "dev",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      "lambdaRole"
+                    ]
+                  ]
+                }
+              }
+            },
+            "Function1LambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                  "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                },
+                "Handler": "./src/lambda1.handler",
+                "Runtime": "nodejs18.x",
+                "FunctionName": "serverless-typescript-template-dev-Function1",
+                "MemorySize": 1024,
+                "Timeout": 30,
+                "Environment": {
+                  "Variables": {
+                    "STAGE": "dev",
+                    "CUSTOM_VAR": "Hello, World!",
+                    "NODE_OPTIONS": "--enable-source-maps"
+                  }
+                },
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "Function1LogGroup"
+              ]
+            },
+            "Function2LambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                  "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                },
+                "Handler": "./src/lambda2.handler",
+                "Runtime": "nodejs18.x",
+                "FunctionName": "serverless-typescript-template-dev-Function2",
+                "MemorySize": 2048,
+                "Timeout": 10,
+                "Environment": {
+                  "Variables": {
+                    "STAGE": "dev",
+                    "NODE_OPTIONS": "--enable-source-maps"
+                  }
+                },
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "Function2LogGroup"
+              ]
+            },
+            "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "Function1LambdaFunction"
+                },
+                "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+              }
+            },
+            "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "Function2LambdaFunction"
+                },
+                "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+              }
+            },
+            "Function2EventsRuleSchedule1": {
+              "Type": "AWS::Events::Rule",
+              "Properties": {
+                "ScheduleExpression": "cron(0 12 * * ? *)",
+                "State": "ENABLED",
+                "Targets": [
+                  {
+                    "Arn": {
+                      "Fn::GetAtt": [
+                        "Function2LambdaFunction",
+                        "Arn"
+                      ]
+                    },
+                    "Id": "Function2Schedule"
+                  }
+                ]
+              }
+            },
+            "Function2LambdaPermissionEventsRuleSchedule1": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "Function2LambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "events.amazonaws.com",
+                "SourceArn": {
+                  "Fn::GetAtt": [
+                    "Function2EventsRuleSchedule1",
+                    "Arn"
+                  ]
+                }
+              }
+            },
+            "HttpApi": {
+              "Type": "AWS::ApiGatewayV2::Api",
+              "Properties": {
+                "Name": "dev-serverless-typescript-template",
+                "ProtocolType": "HTTP"
+              }
+            },
+            "HttpApiStage": {
+              "Type": "AWS::ApiGatewayV2::Stage",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "StageName": "$default",
+                "AutoDeploy": true,
+                "DefaultRouteSettings": {
+                  "DetailedMetricsEnabled": false
+                }
+              }
+            },
+            "Function1LambdaPermissionHttpApi": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "Function1LambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "HttpApi"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HttpApiIntegrationFunction1": {
+              "Type": "AWS::ApiGatewayV2::Integration",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "IntegrationType": "AWS_PROXY",
+                "IntegrationUri": {
+                  "Fn::GetAtt": [
+                    "Function1LambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "PayloadFormatVersion": "2.0",
+                "TimeoutInMillis": 30000
+              }
+            },
+            "HttpApiRouteGetApiFunction1": {
+              "Type": "AWS::ApiGatewayV2::Route",
+              "Properties": {
+                "ApiId": {
+                  "Ref": "HttpApi"
+                },
+                "RouteKey": "GET /api/Function1",
+                "Target": {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      "integrations",
+                      {
+                        "Ref": "HttpApiIntegrationFunction1"
+                      }
+                    ]
+                  ]
+                }
+              },
+              "DependsOn": "HttpApiIntegrationFunction1"
+            }
+          },
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+              "Export": {
+                "Name": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
+              }
+            },
+            "Function1LambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+              },
+              "Export": {
+                "Name": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
+              }
+            },
+            "Function2LambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+              },
+              "Export": {
+                "Name": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
+              }
+            },
+            "HttpApiId": {
+              "Description": "Id of the HTTP API",
+              "Value": {
+                "Ref": "HttpApi"
+              },
+              "Export": {
+                "Name": "sls-serverless-typescript-template-dev-HttpApiId"
+              }
+            },
+            "HttpApiUrl": {
+              "Description": "URL of the HTTP API",
+              "Value": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "https://",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    ".execute-api.",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ".",
+                    {
+                      "Ref": "AWS::URLSuffix"
+                    }
+                  ]
+                ]
+              },
+              "Export": {
+                "Name": "sls-serverless-typescript-template-dev-HttpApiUrl"
+              }
+            }
+          }
+        },
+        "vpc": {}
+      },
+      "custom": {
+        "customVariable1": "Hello, World!"
+      },
+      "functions": {
+        "Function1": {
+          "handler": "./src/lambda1.handler",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/api/Function1",
+                "method": "GET"
+              },
+              "resolvedMethod": "GET",
+              "resolvedPath": "/api/Function1"
+            }
+          ],
+          "environment": {
+            "CUSTOM_VAR": "Hello, World!",
+            "NODE_OPTIONS": "--enable-source-maps"
+          },
+          "name": "serverless-typescript-template-dev-Function1",
+          "package": {},
+          "memory": 1024,
+          "timeout": 30,
+          "runtime": "nodejs18.x",
+          "vpc": {},
+          "versionLogicalId": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+        },
+        "Function2": {
+          "handler": "./src/lambda2.handler",
+          "timeout": 10,
+          "memorySize": 2048,
+          "events": [
+            {
+              "schedule": {
+                "rate": [
+                  "cron(0 12 * * ? *)"
+                ],
+                "enabled": true
+              }
+            }
+          ],
+          "name": "serverless-typescript-template-dev-Function2",
+          "environment": {
+            "NODE_OPTIONS": "--enable-source-maps"
+          },
+          "package": {},
+          "memory": 2048,
+          "runtime": "nodejs18.x",
+          "vpc": {},
+          "versionLogicalId": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+        }
+      }
+    },
+    "serviceRawFile": "# ./serverless.yml\nservice: serverless-typescript-template\n\nplugins:\n  - serverless-offline # used for local execution\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: eu-west-1\n  stage: ${opt:stage}\n  timeout: 30   # repository wide Lambda timeout\n  environment:  # repository wide Lambda env variables\n    STAGE: ${self:provider.stage}\n\ncustom:\n  customVariable1: Hello, World!\n\nfunctions:\n  # Serverless Framework specific syntax\n  Function1:\n    handler: ./src/lambda1.handler\n    events:\n      - httpApi:\n          path: /api/Function1\n          method: GET\n    environment:\n      CUSTOM_VAR: ${self:custom.customVariable1}\n\n  Function2:\n    handler: ./src/lambda2.handler\n    timeout: 10        # override global setting\n    memorySize: 2048   # override default 512 Mb\n    events:\n      - schedule:\n          rate: cron(0 12 * * ? *) # triggers every 12 hours\n          enabled: true",
+    "command": [
+      "deploy"
+    ],
+    "options": {
+      "stage": "dev"
+    },
+    "error": null,
+    "params": {},
+    "machineId": "f745712f9e9411aad61d7a3442f0a137",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "325ea7b0-fd35-4af0-a675-fb86d1dd8ced",
+    "orgName": "johnnyho",
+    "userId": "sBdr8hzP30FJbghbmz",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "johnnyho",
+    "subscription": null,
+    "userEmail": "1155194577@link.cuhk.edu.hk",
+    "serviceProviderAwsRegion": "eu-west-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "058264289326",
+    "projectType": "traditional",
+    "versionSf": "4.4.4",
+    "serviceProviderAwsCfStackName": "serverless-typescript-template-dev",
+    "integrations": {},
+    "serviceUniqueId": "arn:aws:cloudformation:eu-west-1:058264289326:stack/serverless-typescript-template-dev/55adc6f0-8637-11ef-b846-0a4567a1fc95",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-west-1:058264289326:stack/serverless-typescript-template-dev/55adc6f0-8637-11ef-b846-0a4567a1fc95",
+    "serviceProviderAwsCfStackCreated": "2024-10-09T12:09:29.416Z",
+    "serviceProviderAwsCfStackUpdated": "2024-10-09T12:16:45.343Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "Function2LambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:eu-west-1:058264289326:function:serverless-typescript-template-dev-Function2:2",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "Function1LambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:eu-west-1:058264289326:function:serverless-typescript-template-dev-Function1:2",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "HttpApiId",
+        "OutputValue": "asomo52wj0",
+        "Description": "Id of the HTTP API",
+        "ExportName": "sls-serverless-typescript-template-dev-HttpApiId"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+        "ExportName": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
+      },
+      {
+        "OutputKey": "HttpApiUrl",
+        "OutputValue": "https://asomo52wj0.execute-api.eu-west-1.amazonaws.com",
+        "Description": "URL of the HTTP API",
+        "ExportName": "sls-serverless-typescript-template-dev-HttpApiUrl"
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lambda1.ts"],
+  "sourcesContent": ["import type {\n    Context,\n    APIGatewayProxyStructuredResultV2,\n    APIGatewayProxyEventV2,\n    Handler,\n  } from \"aws-lambda\";\n  \n  export const handler: Handler = async (\n    _event: APIGatewayProxyEventV2,\n    _context: Context\n  ): Promise<APIGatewayProxyStructuredResultV2> => {\n    console.log(\"Hello, Lambda 1!\");\n  \n    return {\n      statusCode: 200,\n      body: \"asdsss\",\n    };\n  };"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAOS,IAAM,UAAmB,OAC9B,QACA,aAC+C;AAC/C,UAAQ,IAAI,kBAAkB;AAE9B,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM;AAAA,EACR;AACF;",
+  "names": []
+}
