@@ -18,7 +18,7 @@
             "provider": {
               "name": "aws",
               "runtime": "nodejs18.x",
-              "region": "eu-west-1",
+              "region": "us-east-1",
               "stage": "dev",
               "timeout": 30,
               "environment": {
@@ -123,8 +123,8 @@
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
-                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
-                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                        "S3Bucket": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728486773906-2024-10-09T15:12:53.906Z/serverless-typescript-template.zip"
                       },
                       "Handler": "./src/lambda1.handler",
                       "Runtime": "nodejs18.x",
@@ -153,8 +153,8 @@
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
-                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
-                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                        "S3Bucket": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728486773906-2024-10-09T15:12:53.906Z/serverless-typescript-template.zip"
                       },
                       "Handler": "./src/lambda2.handler",
                       "Runtime": "nodejs18.x",
@@ -178,24 +178,24 @@
                       "Function2LogGroup"
                     ]
                   },
-                  "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok": {
+                  "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "Function1LambdaFunction"
                       },
-                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                      "CodeSha256": "ZEKdK+yMFHClxikMlNwaoYWyZiI0Xqw805rxBbCTogg="
                     }
                   },
-                  "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw": {
+                  "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "Function2LambdaFunction"
                       },
-                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                      "CodeSha256": "ZEKdK+yMFHClxikMlNwaoYWyZiI0Xqw805rxBbCTogg="
                     }
                   },
                   "Function2EventsRuleSchedule1": {
@@ -333,7 +333,7 @@
                 },
                 "Outputs": {
                   "ServerlessDeploymentBucketName": {
-                    "Value": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                    "Value": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
                     "Export": {
                       "Name": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
                     }
@@ -341,7 +341,7 @@
                   "Function1LambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                      "Ref": "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs"
                     },
                     "Export": {
                       "Name": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
@@ -350,7 +350,7 @@
                   "Function2LambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                      "Ref": "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE"
                     },
                     "Export": {
                       "Name": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
@@ -420,7 +420,7 @@
                 "timeout": 30,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                "versionLogicalId": "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs"
               },
               "Function2": {
                 "handler": "./src/lambda2.handler",
@@ -444,7 +444,7 @@
                 "memory": 2048,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                "versionLogicalId": "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE"
               }
             }
           },
@@ -477,7 +477,7 @@
             "provider": {
               "name": "aws",
               "runtime": "nodejs18.x",
-              "region": "eu-west-1",
+              "region": "us-east-1",
               "stage": "dev",
               "timeout": 30,
               "environment": {
@@ -582,8 +582,8 @@
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
-                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
-                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                        "S3Bucket": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728486773906-2024-10-09T15:12:53.906Z/serverless-typescript-template.zip"
                       },
                       "Handler": "./src/lambda1.handler",
                       "Runtime": "nodejs18.x",
@@ -612,8 +612,8 @@
                     "Type": "AWS::Lambda::Function",
                     "Properties": {
                       "Code": {
-                        "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
-                        "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                        "S3Bucket": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
+                        "S3Key": "serverless/serverless-typescript-template/dev/1728486773906-2024-10-09T15:12:53.906Z/serverless-typescript-template.zip"
                       },
                       "Handler": "./src/lambda2.handler",
                       "Runtime": "nodejs18.x",
@@ -637,24 +637,24 @@
                       "Function2LogGroup"
                     ]
                   },
-                  "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok": {
+                  "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "Function1LambdaFunction"
                       },
-                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                      "CodeSha256": "ZEKdK+yMFHClxikMlNwaoYWyZiI0Xqw805rxBbCTogg="
                     }
                   },
-                  "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw": {
+                  "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "Function2LambdaFunction"
                       },
-                      "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                      "CodeSha256": "ZEKdK+yMFHClxikMlNwaoYWyZiI0Xqw805rxBbCTogg="
                     }
                   },
                   "Function2EventsRuleSchedule1": {
@@ -792,7 +792,7 @@
                 },
                 "Outputs": {
                   "ServerlessDeploymentBucketName": {
-                    "Value": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+                    "Value": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
                     "Export": {
                       "Name": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
                     }
@@ -800,7 +800,7 @@
                   "Function1LambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                      "Ref": "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs"
                     },
                     "Export": {
                       "Name": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
@@ -809,7 +809,7 @@
                   "Function2LambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                      "Ref": "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE"
                     },
                     "Export": {
                       "Name": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
@@ -879,7 +879,7 @@
                 "timeout": 30,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                "versionLogicalId": "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs"
               },
               "Function2": {
                 "handler": "./src/lambda2.handler",
@@ -903,7 +903,7 @@
                 "memory": 2048,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                "versionLogicalId": "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE"
               }
             }
           },
@@ -937,7 +937,7 @@
       "provider": {
         "name": "aws",
         "runtime": "nodejs18.x",
-        "region": "eu-west-1",
+        "region": "us-east-1",
         "stage": "dev",
         "timeout": 30,
         "environment": {
@@ -1042,8 +1042,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
-                  "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
+                  "S3Key": "serverless/serverless-typescript-template/dev/1728486773906-2024-10-09T15:12:53.906Z/serverless-typescript-template.zip"
                 },
                 "Handler": "./src/lambda1.handler",
                 "Runtime": "nodejs18.x",
@@ -1072,8 +1072,8 @@
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
-                  "S3Bucket": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
-                  "S3Key": "serverless/serverless-typescript-template/dev/1728476194341-2024-10-09T12:16:34.341Z/serverless-typescript-template.zip"
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
+                  "S3Key": "serverless/serverless-typescript-template/dev/1728486773906-2024-10-09T15:12:53.906Z/serverless-typescript-template.zip"
                 },
                 "Handler": "./src/lambda2.handler",
                 "Runtime": "nodejs18.x",
@@ -1097,24 +1097,24 @@
                 "Function2LogGroup"
               ]
             },
-            "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok": {
+            "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "Function1LambdaFunction"
                 },
-                "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                "CodeSha256": "ZEKdK+yMFHClxikMlNwaoYWyZiI0Xqw805rxBbCTogg="
               }
             },
-            "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw": {
+            "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "Function2LambdaFunction"
                 },
-                "CodeSha256": "+IAK1NhKMSKJVs8iTkuBQqRdoiU2zvlziGFxcb5q01A="
+                "CodeSha256": "ZEKdK+yMFHClxikMlNwaoYWyZiI0Xqw805rxBbCTogg="
               }
             },
             "Function2EventsRuleSchedule1": {
@@ -1252,7 +1252,7 @@
           },
           "Outputs": {
             "ServerlessDeploymentBucketName": {
-              "Value": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+              "Value": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
               "Export": {
                 "Name": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
               }
@@ -1260,7 +1260,7 @@
             "Function1LambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+                "Ref": "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs"
               },
               "Export": {
                 "Name": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
@@ -1269,7 +1269,7 @@
             "Function2LambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+                "Ref": "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE"
               },
               "Export": {
                 "Name": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
@@ -1339,7 +1339,7 @@
           "timeout": 30,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "Function1LambdaVersionRhgw8ooJbR49OqxmvObyN9ytFrokQYPUIrZj54Ok"
+          "versionLogicalId": "Function1LambdaVersionbYGVl5ySuZHgCRYUJLkJPuhIORXqueg3bjXMcpH0hs"
         },
         "Function2": {
           "handler": "./src/lambda2.handler",
@@ -1363,11 +1363,11 @@
           "memory": 2048,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "Function2LambdaVersionHsjlNcgUPPqs7atiMScZ7klS1FxyyhWLkD80PGa9omw"
+          "versionLogicalId": "Function2LambdaVersionomIBDJY6h09CNFllUwJPtJTuHUygNPlN3H7lbgVdE"
         }
       }
     },
-    "serviceRawFile": "# ./serverless.yml\nservice: serverless-typescript-template\n\nplugins:\n  - serverless-offline # used for local execution\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: eu-west-1\n  stage: ${opt:stage}\n  timeout: 30   # repository wide Lambda timeout\n  environment:  # repository wide Lambda env variables\n    STAGE: ${self:provider.stage}\n\ncustom:\n  customVariable1: Hello, World!\n\nfunctions:\n  # Serverless Framework specific syntax\n  Function1:\n    handler: ./src/lambda1.handler\n    events:\n      - httpApi:\n          path: /api/Function1\n          method: GET\n    environment:\n      CUSTOM_VAR: ${self:custom.customVariable1}\n\n  Function2:\n    handler: ./src/lambda2.handler\n    timeout: 10        # override global setting\n    memorySize: 2048   # override default 512 Mb\n    events:\n      - schedule:\n          rate: cron(0 12 * * ? *) # triggers every 12 hours\n          enabled: true",
+    "serviceRawFile": "# ./serverless.yml\nservice: serverless-typescript-template\n\nplugins:\n  - serverless-offline # used for local execution\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: us-east-1\n  stage: ${opt:stage}\n  timeout: 30   # repository wide Lambda timeout\n  environment:  # repository wide Lambda env variables\n    STAGE: ${self:provider.stage}\n\ncustom:\n  customVariable1: Hello, World!\n\nfunctions:\n  # Serverless Framework specific syntax\n  Function1:\n    handler: ./src/lambda1.handler\n    events:\n      - httpApi:\n          path: /api/Function1\n          method: GET\n    environment:\n      CUSTOM_VAR: ${self:custom.customVariable1}\n\n  Function2:\n    handler: ./src/lambda2.handler\n    timeout: 10        # override global setting\n    memorySize: 2048   # override default 512 Mb\n    events:\n      - schedule:\n          rate: cron(0 12 * * ? *) # triggers every 12 hours\n          enabled: true",
     "command": [
       "deploy"
     ],
@@ -1376,7 +1376,7 @@
     },
     "error": null,
     "params": {},
-    "machineId": "f745712f9e9411aad61d7a3442f0a137",
+    "machineId": "7408a5f5b8d745ca777242a0ad26770c",
     "stage": "dev",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
@@ -1395,45 +1395,45 @@
     "userName": "johnnyho",
     "subscription": null,
     "userEmail": "1155194577@link.cuhk.edu.hk",
-    "serviceProviderAwsRegion": "eu-west-1",
+    "serviceProviderAwsRegion": "us-east-1",
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "058264289326",
     "projectType": "traditional",
     "versionSf": "4.4.4",
     "serviceProviderAwsCfStackName": "serverless-typescript-template-dev",
     "integrations": {},
-    "serviceUniqueId": "arn:aws:cloudformation:eu-west-1:058264289326:stack/serverless-typescript-template-dev/55adc6f0-8637-11ef-b846-0a4567a1fc95",
-    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-west-1:058264289326:stack/serverless-typescript-template-dev/55adc6f0-8637-11ef-b846-0a4567a1fc95",
-    "serviceProviderAwsCfStackCreated": "2024-10-09T12:09:29.416Z",
-    "serviceProviderAwsCfStackUpdated": "2024-10-09T12:16:45.343Z",
-    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:058264289326:stack/serverless-typescript-template-dev/fbdbb3c0-8650-11ef-92f5-0affcdbc8697",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:058264289326:stack/serverless-typescript-template-dev/fbdbb3c0-8650-11ef-92f5-0affcdbc8697",
+    "serviceProviderAwsCfStackCreated": "2024-10-09T15:13:05.407Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "Function2LambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-1:058264289326:function:serverless-typescript-template-dev-Function2:2",
+        "OutputValue": "arn:aws:lambda:us-east-1:058264289326:function:serverless-typescript-template-dev-Function2:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-serverless-typescript-template-dev-Function2LambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "Function1LambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-1:058264289326:function:serverless-typescript-template-dev-Function1:2",
+        "OutputValue": "arn:aws:lambda:us-east-1:058264289326:function:serverless-typescript-template-dev-Function1:1",
         "Description": "Current Lambda function version",
         "ExportName": "sls-serverless-typescript-template-dev-Function1LambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "HttpApiId",
-        "OutputValue": "asomo52wj0",
+        "OutputValue": "gu6yb0h1e7",
         "Description": "Id of the HTTP API",
         "ExportName": "sls-serverless-typescript-template-dev-HttpApiId"
       },
       {
         "OutputKey": "ServerlessDeploymentBucketName",
-        "OutputValue": "serverless-framework-deployments-eu-west-1-a584d10d-e2cc",
+        "OutputValue": "serverless-framework-deployments-us-east-1-c019a9bd-fae2",
         "ExportName": "sls-serverless-typescript-template-dev-ServerlessDeploymentBucketName"
       },
       {
         "OutputKey": "HttpApiUrl",
-        "OutputValue": "https://asomo52wj0.execute-api.eu-west-1.amazonaws.com",
+        "OutputValue": "https://gu6yb0h1e7.execute-api.us-east-1.amazonaws.com",
         "Description": "URL of the HTTP API",
         "ExportName": "sls-serverless-typescript-template-dev-HttpApiUrl"
       }
